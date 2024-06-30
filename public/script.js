@@ -14,13 +14,34 @@ fetch(`/json?id=${profile_id}`)
 function insertInfo(data){
     let info_title = document.getElementById('info_title');
     info_title.innerHTML = data.title_lines[0];
-
-    let info_left = document.getElementById('info_left');
-    let second_title = document.createElement("p");
+    let second_title = document.getElementById("second_title");
     second_title.innerHTML = data.title_lines[1];
-    info_left.appendChild(second_title);
 
     // need to also implement bio_lines here
+    let bio_lines = data.bio_lines;
+    console.log(bio_lines);
+
+    mickey_info = document.getElementById('mickey_info');
+
+    for (line of bio_lines){
+        console.log(line);
+        let parameter_titles = document.createElement('div');
+        parameter_titles.className = "parameter_titles"
+
+        let parameters = document.createElement('p');
+        parameters.className = "parameters";
+        parameters.innerHTML = line.split(":")[0];
+        
+        parameter_titles.appendChild(parameters);
+
+        let answers = document.createElement('p');
+        answers.className = "answers";
+        answers.innerHTML = line.split(":").slice(1).join(":");
+
+        parameter_titles.appendChild(answers);
+
+        mickey_info.appendChild(parameter_titles);
+    };
 };
 
 function insertEndorsement(data){
