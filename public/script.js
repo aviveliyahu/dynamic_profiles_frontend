@@ -45,14 +45,57 @@ function insertInfo(data){
 };
 
 function insertEndorsement(data){
+ //Written by Matan Asraf
+    let endorsement_files = data.endorsement_files
+    console.log(endorsement_files);
 
+    end_title = document.getElementById('end_title');
     // to implement Endorsement section
+    for (file of endorsement_files) {
+        console.log(file);
+        let end_right = document.createElement('div');
+        end_right.className = "end_right";
 
+        let end_box = document.createElement('p');
+        end_box.className = "end_box";
+        end_box.innerHTML = file.split("\n")[0];
+
+        end_right.appendChild(end_box);
+
+        let seperator = document.createElement('p');
+        seperator.className = "seperator";
+        seperator.innerHTML = file.split("\n")[1];
+
+        end_right.appendChild(seperator);
+
+        end_title.appendChild(end_right);
+    }
 };
-
 function insertFriends(data){
+    //Written by Matan Asraf
     // to implement Friends section
-};
+     let filtered_friends = data.filtered_friends;
+     console.log(filtered_friends);
+
+    friends_title = document.getElementById('friends_title');
+
+    for(friend of filtered_friends) {
+        console.log(friend);
+        let profile = document.createElement('a');  //כאן עד סוף הקטע השתמשתי בchatGPT
+        profile.href = `/profile?id=${friend}`; 
+        // Create an image element
+        let img = document.createElement('img');
+        img.className = 'friends_img';
+        img.src = `${friend}/profile.png`;
+        img.alt = `${friend}_img`;
+
+        // Append the image to the anchor
+        profile.appendChild(img);
+
+        // Append the anchor to the friends container
+        friendsContainer.appendChild(profile);  //עד כאן התשמשתי בchatGPT 
+    }
+}
 
 
 function insertImages(){
