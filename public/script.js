@@ -44,58 +44,68 @@ function insertInfo(data){
     };
 };
 
-function insertEndorsement(data){
- //Written by Matan Asraf
-    let endorsement_files = data.endorsement_files
+function insertEndorsement(data) {
+    // Written by Matan Asraf
+    let endorsement_files = data.endorsement_files;
     console.log(endorsement_files);
 
-    end_title = document.getElementById('end_title');
-    // to implement Endorsement section
-    for (file of endorsement_files) {
+    end_right = document.getElementById('end_right');
+
+    // To implement Endorsement section
+    for (let file of endorsement_files) {
         console.log(file);
-        let end_right = document.createElement('div');
-        end_right.className = "end_right";
 
-        let end_box = document.createElement('p');
+        let end_box = document.createElement('div');
         end_box.className = "end_box";
-        end_box.innerHTML = file.split("\n")[0];
 
+        let p = document.createElement('p');
+        p.innerHTML = file.split("\n")[0];
+
+        let hr = document.createElement('hr');
+        hr.className = "seperator";
+
+        let span = document.createElement('span');
+        span.innerHTML = file.split("\n")[1];
+
+        end_box.appendChild(p);
+        end_box.appendChild(hr);
+        end_box.appendChild(span); 
+            
         end_right.appendChild(end_box);
-
-        let seperator = document.createElement('p');
-        seperator.className = "seperator";
-        seperator.innerHTML = file.split("\n")[1];
-
-        end_right.appendChild(seperator);
-
-        end_title.appendChild(end_right);
     }
-};
-function insertFriends(data){
-    //Written by Matan Asraf
+}
+function insertFriends(data) {
+    // Written by Matan Asraf
     // to implement Friends section
-     let filtered_friends = data.filtered_friends;
-     console.log(filtered_friends);
+    let filtered_friends = data.filtered_friends;  
+    console.log(filtered_friends);
 
-    friends_title = document.getElementById('friends_title');
+    let friends_title = document.getElementById('friends_title');   // כאן השתמשתי בצ'אט GPT
+    friends_title.style.display = 'inline-flex'; // Set display to inline-flex
+    friends_title.style.flexWrap = 'wrap'; // Optional: Allows wrapping to the next line if needed
+    friends_title.style.gap = '10px'; // Optional: Adds space between the images
 
-    for(friend of filtered_friends) {
+    for (let friend of filtered_friends) {
         console.log(friend);
-        let profile = document.createElement('a');  //כאן עד סוף הקטע השתמשתי בchatGPT
-        profile.href = `/profile?id=${friend}`; 
+        
+        let profile = document.createElement('a');
+        profile.href = `/profile?id=${friend}`;
+        
         // Create an image element
         let img = document.createElement('img');
-        img.className = 'friends_img';
+        img.style.width = '250px'; // Adjust the width as needed
+        img.style.height = 'auto'; // Maintains the aspect ratio
         img.src = `${friend}/profile.png`;
         img.alt = `${friend}_img`;
 
         // Append the image to the anchor
         profile.appendChild(img);
 
-        // Append the anchor to the friends container
-        friendsContainer.appendChild(profile);  //עד כאן התשמשתי בchatGPT 
+        // Append the anchor to the friends_title container
+        friends_title.appendChild(profile);    // עד כאן השתמשתי בצ'אט GPT
     }
 }
+
 
 
 function insertImages(){
