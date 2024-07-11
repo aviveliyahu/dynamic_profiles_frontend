@@ -47,9 +47,11 @@ function insertInfo(data){
 function insertEndorsement(data) {
     // Written by Matan Asraf
     let endorsement_files = data.endorsement_files;
-    console.log(endorsement_files);
+    console.log(endorsement_files);   
 
     end_right = document.getElementById('end_right');
+    //Prevents duplication
+    end_right.innerHTML = '<h2 id="end_title">Endorsement</h2>';  //לקחתי מצ'אט GPT 
 
     // To implement Endorsement section
     for (let file of endorsement_files) {
@@ -59,7 +61,7 @@ function insertEndorsement(data) {
         end_box.className = "end_box";
 
         let p = document.createElement('p');
-        p.innerHTML = file.split("\n")[0];
+        p.innerHTML = file.split("\n")[0]; 
 
         let hr = document.createElement('hr');
         hr.className = "seperator";
@@ -79,11 +81,15 @@ function insertFriends(data) {
     // to implement Friends section
     let filtered_friends = data.filtered_friends;  
     console.log(filtered_friends);
+    friends_title.innerHTML = ''; // נקה את התוכן הקיים
 
-    let friends_title = document.getElementById('friends_title');   // כאן השתמשתי בצ'אט GPT
-    friends_title.style.display = 'inline-flex'; // Set display to inline-flex
-    friends_title.style.flexWrap = 'wrap'; // Optional: Allows wrapping to the next line if needed
-    friends_title.style.gap = '10px'; // Optional: Adds space between the images
+    // הגדרת כיווניות האלמנט כ-LTR כדי להבטיח יישור נכון
+    friends_title.style.display = 'flex';
+    friends_title.style.flexWrap = 'wrap';
+    friends_title.style.gap = '10px';
+    friends_title.style.alignItems = 'center';
+    friends_title.style.direction = 'ltr';
+    friends_title.style.justifyContent = 'flex-start';
 
     for (let friend of filtered_friends) {
         console.log(friend);
@@ -105,8 +111,6 @@ function insertFriends(data) {
         friends_title.appendChild(profile);    // עד כאן השתמשתי בצ'אט GPT
     }
 }
-
-
 
 function insertImages(){
     let banner_div = document.querySelector('.banner');
