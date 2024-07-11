@@ -75,43 +75,31 @@ function insertEndorsement(data) {
             
         end_right.appendChild(end_box);
     }
-}
-function insertFriends(data) {
+}function insertFriends(data) {
     // Written by Matan Asraf
     // to implement Friends section
-    let filtered_friends = data.filtered_friends;  
+
+    let filtered_friends = data.filtered_friends;   // כאן השתמשתי בצ'אט GPT
     console.log(filtered_friends);
-    friends_title.innerHTML = ''; // נקה את התוכן הקיים
 
-    // הגדרת כיווניות האלמנט כ-LTR כדי להבטיח יישור נכון
-    friends_title.style.display = 'flex';
-    friends_title.style.flexWrap = 'wrap';
-    friends_title.style.gap = '10px';
-    friends_title.style.alignItems = 'center';
-    friends_title.style.direction = 'ltr';
-    friends_title.style.justifyContent = 'flex-start';
-
+    let friendsBottom = document.getElementById('friends_bottom');
+    
     for (let friend of filtered_friends) {
         console.log(friend);
         
         let profile = document.createElement('a');
         profile.href = `/profile?id=${friend}`;
         
-        // Create an image element
         let img = document.createElement('img');
-        img.style.width = '250px'; // Adjust the width as needed
-        img.style.height = 'auto'; // Maintains the aspect ratio
+        img.className = 'friends_img';
         img.src = `${friend}/profile.png`;
         img.alt = `${friend}_img`;
 
-        // Append the image to the anchor
         profile.appendChild(img);
 
-        // Append the anchor to the friends_title container
-        friends_title.appendChild(profile);    // עד כאן השתמשתי בצ'אט GPT
+        friendsBottom.appendChild(profile);
     }
 }
-
 function insertImages(){
     let banner_div = document.querySelector('.banner');
     let back_img = document.createElement('img');
