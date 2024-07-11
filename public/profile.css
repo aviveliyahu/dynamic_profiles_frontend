@@ -163,3 +163,13 @@ body{
     background-color: #5f5b5b;
     text-align: center;
 }
+/* Mobile adjustment by Aviv Yonathan Eliyahu */
+/* media size adjustments */
+@media (max-width: 768px){
+    .info{
+        flex-direction: column;
+    }
+    .endorsement{
+        flex-direction: column;
+    }
+}

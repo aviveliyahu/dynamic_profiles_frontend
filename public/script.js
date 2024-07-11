@@ -1,6 +1,9 @@
+// file by Aviv Yonathan Eliyahu and Matan Asraf
+
 let url = new URLSearchParams(window.location.search);
 let profile_id = url.get('id');
 
+// Written by Aviv Yonathan Eliyahu
 fetch(`/json?id=${profile_id}`)
 .then(function (response){
     return response.json();
@@ -11,20 +14,18 @@ fetch(`/json?id=${profile_id}`)
     insertFriends(data);
 });
 
+// Written by Aviv Yonathan Eliyahu
 function insertInfo(data){
     let info_title = document.getElementById('info_title');
     info_title.innerHTML = data.title_lines[0];
     let second_title = document.getElementById("second_title");
     second_title.innerHTML = data.title_lines[1];
 
-    // need to also implement bio_lines here
     let bio_lines = data.bio_lines;
-    console.log(bio_lines);
 
     mickey_info = document.getElementById('mickey_info');
 
     for (line of bio_lines){
-        console.log(line);
         let parameter_titles = document.createElement('div');
         parameter_titles.className = "parameter_titles"
 
@@ -47,7 +48,6 @@ function insertInfo(data){
 function insertEndorsement(data) {
     // Written by Matan Asraf
     let endorsement_files = data.endorsement_files;
-    console.log(endorsement_files);   
 
     end_right = document.getElementById('end_right');
     //Prevents duplication
@@ -55,7 +55,6 @@ function insertEndorsement(data) {
 
     // To implement Endorsement section
     for (let file of endorsement_files) {
-        console.log(file);
 
         let end_box = document.createElement('div');
         end_box.className = "end_box";
@@ -85,7 +84,6 @@ function insertEndorsement(data) {
     let friendsBottom = document.getElementById('friends_bottom');
     
     for (let friend of filtered_friends) {
-        console.log(friend);
         
         let profile = document.createElement('a');
         profile.href = `/profile?id=${friend}`;
@@ -100,29 +98,34 @@ function insertEndorsement(data) {
         friendsBottom.appendChild(profile);
     }
 }
+// Written by Aviv Yonathan Eliyahu
 function insertImages(){
     let banner_div = document.querySelector('.banner');
     let back_img = document.createElement('img');
     back_img.id = 'back_img';
     back_img.src = `/${profile_id}/banner.png`;
+    back_img.alt = "back_img";
     banner_div.appendChild(back_img);
 
     let profile_div = document.querySelector('.profile');
     let profile_img = document.createElement('img');
     profile_img.id = "profile_img";
     profile_img.src = `/${profile_id}/profile.png`;
+    profile_img.alt = "profile_img";
     profile_div.appendChild(profile_img);
 
     let info_right_div = document.getElementById('info_right');
     let info_img = document.createElement('img');
     info_img.id = "info_img";
     info_img.src = `/${profile_id}/image1.png`;
+    info_img.alt = "info_img";
     info_right_div.appendChild(info_img);
 
     let end_left_div = document.getElementById('end_left');
     let end_img = document.createElement('img');
     end_img.id = "end_img";
     end_img.src = `/${profile_id}/image2.png`;
+    end_img.alt = "end_img";
     end_left_div.appendChild(end_img);
 
 };

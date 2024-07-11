@@ -68,7 +68,8 @@ app.get('/json', function(req, res) {
   json_response.endorsement_files = endorsement_files;
 
   // send JSON in response to the fetch request
-  res.setHeader('Content-Type', 'application/json'); //JSON-קביעת סוג תוכן ל
+  // JSON response created by Aviv Yonathan Eliyahu
+  res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(json_response));
 });
 
