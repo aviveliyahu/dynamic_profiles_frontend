@@ -29,8 +29,7 @@ app.get('/json', function(req, res) {
   
   // get ID entered by user
   let id = req.query.id;
-  console.log(id);
-
+  
   // save ID in the json
   json_response.id = id;
 

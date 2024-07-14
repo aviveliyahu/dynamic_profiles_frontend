@@ -165,11 +165,11 @@ body{
 }
 /* Mobile adjustment by Aviv Yonathan Eliyahu */
 /* media size adjustments */
-@media (max-width: 768px){
-    .info{
-        flex-direction: column;
+@media (max-width: 767px) {
+    .info {
+      flex-direction: column;
     }
-    .endorsement{
+    .endorsement {
         flex-direction: column;
-    }
-}
+      }
+  }
